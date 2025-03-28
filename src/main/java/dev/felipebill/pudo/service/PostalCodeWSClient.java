@@ -20,8 +20,8 @@ public class PostalCodeWSClient {
 				.setConnectTimeout(Duration.ofSeconds(30)).build();
 	}
 
-	public CepData buscarCep(PostalCode postalCode) {
-		String url = String.format("http://viacep.com.br/ws/%s/json/", postalCode.toString());
-		return restTemplate.getForObject(url, CepData.class);
+	public PostalCodeData findPostalCode(String postalCodeValue) {
+		String url = String.format("http://viacep.com.br/ws/%s/json/", postalCodeValue);
+		return restTemplate.getForObject(url, PostalCodeData.class);
 	}
 }

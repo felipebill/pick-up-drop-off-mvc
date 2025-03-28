@@ -1,6 +1,6 @@
 package dev.felipebill.pudo.service;
 
-public record CepData(
+public record PostalCodeData(
 		 String cep,
 		    String logradouro,
 		    String complemento,
