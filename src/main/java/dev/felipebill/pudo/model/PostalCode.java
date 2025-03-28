@@ -13,6 +13,10 @@ public class PostalCode {
 	@Column(name = "DS_POSTAL_CODE")
 	private String value;
 
+	public PostalCode() {
+		
+	}
+	
 	// Construtor
 	public PostalCode(String value) {
 		if (!isValid(value)) {
