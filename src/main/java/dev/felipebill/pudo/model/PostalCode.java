@@ -1,12 +1,16 @@
 package dev.felipebill.pudo.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+@Embeddable
 public class PostalCode {
 
 	@NotBlank(message = "PostalCode can't be null nor blank")
 	@Pattern(regexp = "^\\d{5}-\\d{3}$", message = "PostalCode must have this format XXXXX-XXX")
+	@Column(name = "DS_POSTAL_CODE")
 	private String value;
 
 	// Construtor

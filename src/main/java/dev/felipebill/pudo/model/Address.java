@@ -1,6 +1,7 @@
 package dev.felipebill.pudo.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,6 +39,7 @@ public class Address {
 	private String neighborhood;
 
 	@Column(name = "DS_NEIGHBORHOOD")
+	@Embedded
 	private PostalCode postalCode;
 	
 	@Column(name = "TP_STATE")
