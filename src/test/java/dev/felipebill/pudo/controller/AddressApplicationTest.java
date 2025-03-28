@@ -20,10 +20,10 @@ public class AddressApplicationTest {
 
 	@Test
 	void shouldReturnNewlyRegisteredAddressDataWithId() {
-		var form = new RegisterNewAddressForm("streetname", 123, "ne", "81070-001", State.ACRE.toString(),
+		var form = new NewAddressForm("streetname", 123, "ne", "81070-001", State.ACRE.toString(),
 				Country.BRASIL.toString());
-		ResponseEntity<NewlyRegisteredAddressData> response = restTemplate.postForEntity("/addresses", form,
-				NewlyRegisteredAddressData.class);
+		ResponseEntity<CompleteAddressData> response = restTemplate.postForEntity("/addresses", form,
+				CompleteAddressData.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 		assertThat(response.getBody()).isNotNull();
@@ -39,8 +39,8 @@ public class AddressApplicationTest {
 		assertThat(locationHeader).isNotNull();
 		assertThat(locationHeader).contains("/addresses/" + response.getBody().id());
 		Long id = response.getBody().id();
-		ResponseEntity<NewlyRegisteredAddressData> getAddressResponse = restTemplate.getForEntity(locationHeader,
-				NewlyRegisteredAddressData.class);
+		ResponseEntity<CompleteAddressData> getAddressResponse = restTemplate.getForEntity(locationHeader,
+				CompleteAddressData.class);
 
 		assertThat(getAddressResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(getAddressResponse.getBody()).isNotNull();
@@ -55,10 +55,10 @@ public class AddressApplicationTest {
 
 	@Test
 	void shouldIncrementIdAfterRegisteringTwice() {
-		var form = new RegisterNewAddressForm("streetname", 123, "ne", "81070-001", State.ACRE.toString(),
+		var form = new NewAddressForm("streetname", 123, "ne", "81070-001", State.ACRE.toString(),
 				Country.BRASIL.toString());
-		ResponseEntity<NewlyRegisteredAddressData> response1 = restTemplate.postForEntity("/addresses", form,
-				NewlyRegisteredAddressData.class);
+		ResponseEntity<CompleteAddressData> response1 = restTemplate.postForEntity("/addresses", form,
+				CompleteAddressData.class);
 		assertThat(response1.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 		assertThat(response1.getBody()).isNotNull();
 		assertThat(response1.getBody().id()).isNotNull();
@@ -66,8 +66,8 @@ public class AddressApplicationTest {
 		assertThat(locationHeader1).isNotNull();
 		assertThat(locationHeader1).contains("/addresses/" + response1.getBody().id());
 
-		ResponseEntity<NewlyRegisteredAddressData> response2 = restTemplate.postForEntity("/addresses", form,
-				NewlyRegisteredAddressData.class);
+		ResponseEntity<CompleteAddressData> response2 = restTemplate.postForEntity("/addresses", form,
+				CompleteAddressData.class);
 		assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 		assertThat(response2.getBody()).isNotNull();
 		assertThat(response2.getBody().id()).isNotNull();

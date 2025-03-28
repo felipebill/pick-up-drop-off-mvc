@@ -34,7 +34,6 @@ public class Address {
 	@Column(name = "NR_NUMBER")
 	private Integer number;
 	
-	
 	@Column(name = "DS_NEIGHBORHOOD")
 	private String neighborhood;
 

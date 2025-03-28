@@ -26,10 +26,10 @@ public class AddressController {
 	}
 
 	@GetMapping("/{id}")
-	ResponseEntity<NewlyRegisteredAddressData> findById(@PathVariable Long id) {
+	ResponseEntity<CompleteAddressData> findById(@PathVariable Long id) {
 		Optional<Address> addressOptional = this.addressRepository.findById(id);
 		if (addressOptional.isPresent()) {
-			var data = NewlyRegisteredAddressData.fromAddress(addressOptional.get());
+			var data = CompleteAddressData.fromAddress(addressOptional.get());
 			return ResponseEntity.ok(data);
 		} else {
 			return ResponseEntity.notFound().build();
@@ -38,11 +38,11 @@ public class AddressController {
 	}
 
 	@PostMapping
-	ResponseEntity<NewlyRegisteredAddressData> registerNewAddress(@RequestBody RegisterNewAddressForm form,
+	ResponseEntity<CompleteAddressData> registerNewAddress(@RequestBody NewAddressForm form,
 			UriComponentsBuilder uriComponentsBuilder) {
 		var address = form.toAddress();
 		this.addressRepository.save(address);
-		var data = NewlyRegisteredAddressData.fromAddress(address);
+		var data = CompleteAddressData.fromAddress(address);
 
 		URI uri = uriComponentsBuilder.path("/addresses/{id}").buildAndExpand(data.id()).toUri();
 
