@@ -38,7 +38,6 @@ public class Address {
 	@Column(name = "DS_NEIGHBORHOOD")
 	private String neighborhood;
 
-	@Column(name = "DS_NEIGHBORHOOD")
 	@Embedded
 	private PostalCode postalCode;
 	
