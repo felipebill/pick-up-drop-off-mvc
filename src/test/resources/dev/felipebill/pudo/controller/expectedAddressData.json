@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "street": "Rua dos Testes",
+  "number": 123,
+  "neighborhood": "Bairro Exemplo",
+  "postalCode": "12345-678",
+  "state": "ACRE",
+  "country": "Brasil"
+}
