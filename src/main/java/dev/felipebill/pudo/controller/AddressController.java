@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import dev.felipebill.pudo.controller.data.CompleteAddressData;
+import dev.felipebill.pudo.controller.form.NewAddressForm;
 import dev.felipebill.pudo.model.Address;
 import dev.felipebill.pudo.repository.AddressRepository;
 

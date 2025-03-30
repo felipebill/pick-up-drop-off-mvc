@@ -44,7 +44,7 @@ public class Delivery {
 	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime orderTime;
 
-	@Column(name = "TM_ORDER_TIME")
+	@Column(name = "TM_DELIVERY_TIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime deliverTime;
 

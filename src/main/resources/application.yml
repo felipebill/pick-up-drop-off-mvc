@@ -1,0 +1,13 @@
+server:
+  servlet:
+    context-path: /pick-up-drop-off
+
+spring:
+  application:
+    name: pick-up-drop-off
+  datasource:
+    username: admin
+    password: admin
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true

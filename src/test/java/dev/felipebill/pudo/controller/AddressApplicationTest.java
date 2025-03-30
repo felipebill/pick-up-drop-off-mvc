@@ -9,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import dev.felipebill.pudo.controller.data.CompleteAddressData;
+import dev.felipebill.pudo.controller.form.NewAddressForm;
 import dev.felipebill.pudo.model.Country;
 import dev.felipebill.pudo.model.State;
 

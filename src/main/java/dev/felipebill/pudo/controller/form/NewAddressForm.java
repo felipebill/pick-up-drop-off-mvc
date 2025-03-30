@@ -1,4 +1,4 @@
-package dev.felipebill.pudo.controller;
+package dev.felipebill.pudo.controller.form;
 
 import dev.felipebill.pudo.model.Address;
 import dev.felipebill.pudo.model.Country;
@@ -34,7 +34,7 @@ public record NewAddressForm(
         String country
 ) {
 
-    Address toAddress() {
+    public Address toAddress() {
         var state = State.valueOf(this.state());
         var country = Country.valueOf(this.country());
         var postalCode = new PostalCode(this.postalCode());
