@@ -3,6 +3,8 @@ package dev.felipebill.pudo.controller;
 import java.net.URI;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import dev.felipebill.pudo.controller.data.CompleteAddressData;
 import dev.felipebill.pudo.controller.data.CompleteDeliveryData;
 import dev.felipebill.pudo.controller.form.NewAddressForm;
 import dev.felipebill.pudo.controller.form.NewDeliveryForm;
+import dev.felipebill.pudo.model.Delivery;
 import dev.felipebill.pudo.model.DeliveryFactory;
 import dev.felipebill.pudo.service.DeliveryService;
 
@@ -40,5 +43,12 @@ public class DeliveryController {
 		return ResponseEntity.created(uri).body(data);
 	}
 
+	
+	@GetMapping("/{id}")
+	ResponseEntity<CompleteDeliveryData> findById(@PathVariable Long id){
+		Delivery delivery = this.deliveryService.findById(id);
+		var data = CompleteDeliveryData.fromDelivery(delivery);
+		return ResponseEntity.ok(data);
+	}
 
 }

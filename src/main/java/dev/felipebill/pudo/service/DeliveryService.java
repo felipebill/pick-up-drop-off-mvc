@@ -1,5 +1,7 @@
 package dev.felipebill.pudo.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import dev.felipebill.pudo.model.Delivery;
@@ -16,6 +18,10 @@ public class DeliveryService {
 	
 	public void registerNewDelivery(Delivery delivery) {
 		this.deliveryRepository.save(delivery);
+	}
+	
+	public Delivery findById(final Long id) {
+		return this.deliveryRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Delivery not found for id: " + id));
 	}
 	
 }
