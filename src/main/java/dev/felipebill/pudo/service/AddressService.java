@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import dev.felipebill.pudo.model.Address;
 import dev.felipebill.pudo.repository.AddressRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class AddressService {
@@ -16,7 +17,7 @@ public class AddressService {
 
 	public Address findById(Long id) {
 		return addressRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Address not found for id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Address not found for id: " + id));
 	}
 
 }

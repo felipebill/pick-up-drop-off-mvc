@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import dev.felipebill.pudo.model.Delivery;
 import dev.felipebill.pudo.repository.IDeliveryRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class DeliveryService {
@@ -21,7 +22,7 @@ public class DeliveryService {
 	}
 	
 	public Delivery findById(final Long id) {
-		return this.deliveryRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Delivery not found for id: " + id));
+		return this.deliveryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Delivery not found for id: " + id));
 	}
 	
 }
