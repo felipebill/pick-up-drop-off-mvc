@@ -1,15 +1,21 @@
 package dev.felipebill.pudo.model;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,7 +45,13 @@ public class Vehicle {
 	@Column(name = "NR_CAPACITY")
 	private Integer capacity;
 	
-	@Transient
-	private Collection<Delivery> deliveries;
+	@OneToMany(fetch = FetchType.LAZY ,mappedBy = "vehicle" )
+	@JsonIgnore
+	private List<Delivery> deliveries = new ArrayList<>();
+
+	public void assignDelivery(Delivery delivery) {
+		delivery.setVehicle(this);
+		this.deliveries.add(delivery);
+	}
 	
 }
