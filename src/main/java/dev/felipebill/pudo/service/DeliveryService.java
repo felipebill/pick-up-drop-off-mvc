@@ -1,10 +1,9 @@
 package dev.felipebill.pudo.service;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import dev.felipebill.pudo.model.Delivery;
+import dev.felipebill.pudo.model.Vehicle;
 import dev.felipebill.pudo.repository.IDeliveryRepository;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -23,6 +22,14 @@ public class DeliveryService {
 	
 	public Delivery findById(final Long id) {
 		return this.deliveryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Delivery not found for id: " + id));
+	}
+	
+	public void sendDeliveryOrderToVehicle(Delivery delivery, Vehicle vehicle) {
+		if(delivery.getVehicle() != null) {
+			throw new RuntimeException("Delivery already has a vehicle");
+		}
+		delivery.setVehicle(vehicle);
+		this.deliveryRepository.save(delivery);
 	}
 	
 }

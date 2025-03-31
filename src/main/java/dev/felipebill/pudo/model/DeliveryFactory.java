@@ -19,6 +19,7 @@ public class DeliveryFactory {
 		var pickupPoint = this.addressService.findById(pickupId);
 		var dropoff = this.addressService.findById(dropoffId);
 		var delivery = Delivery.builder().pickupPoint(pickupPoint).dropoffPoint(dropoff).orderTime(LocalDateTime.now())
+				.state(DeliveryState.ORDERED)
 				.build();
 		return delivery;
 	}

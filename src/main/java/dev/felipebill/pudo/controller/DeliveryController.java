@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import dev.felipebill.pudo.controller.data.CompleteAddressData;
 import dev.felipebill.pudo.controller.data.CompleteDeliveryData;
-import dev.felipebill.pudo.controller.form.NewAddressForm;
 import dev.felipebill.pudo.controller.form.NewDeliveryForm;
 import dev.felipebill.pudo.model.Delivery;
 import dev.felipebill.pudo.model.DeliveryFactory;
+import dev.felipebill.pudo.service.DeliveryDispatcherService;
 import dev.felipebill.pudo.service.DeliveryService;
 
 @RestController
@@ -26,16 +25,23 @@ public class DeliveryController {
 	DeliveryFactory deliveryFactory;
 
 	DeliveryService deliveryService;
+	
+	DeliveryDispatcherService deliveryDispatcherService;
 
-	public DeliveryController(DeliveryFactory deliveryFactory, DeliveryService deliveryService) {
+	public DeliveryController(DeliveryFactory deliveryFactory, DeliveryService deliveryService, DeliveryDispatcherService deliveryDispatcherService) {
 		this.deliveryFactory = deliveryFactory;
 		this.deliveryService = deliveryService;
+		this.deliveryDispatcherService = deliveryDispatcherService;
 	}
 
 	@PostMapping
 	ResponseEntity<CompleteDeliveryData> registerNewDelivery(@RequestBody final NewDeliveryForm form, UriComponentsBuilder uriComponentsBuilder) {
 		var delivery = deliveryFactory.createNewDelivery(form.pickupPointAddressId(), form.dropoffPointAddressId());
 		this.deliveryService.registerNewDelivery(delivery);
+		
+		this.deliveryDispatcherService.dispatchDelivery(delivery);
+		
+		
 		var data = CompleteDeliveryData.fromDelivery(delivery);
 
 		URI uri = uriComponentsBuilder.path("/deliveries/{id}").buildAndExpand(data.id()).toUri();
@@ -50,5 +56,6 @@ public class DeliveryController {
 		var data = CompleteDeliveryData.fromDelivery(delivery);
 		return ResponseEntity.ok(data);
 	}
+	
 
 }
