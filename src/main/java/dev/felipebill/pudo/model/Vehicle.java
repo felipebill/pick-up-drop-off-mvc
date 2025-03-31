@@ -31,7 +31,7 @@ public class Vehicle {
 	private Long id;
 
 	@Embedded
-	private Plate plateNumber;
+	private Plate plate;
 	
 	@Column(name = "DS_DRIVERS_NAME")
 	private String driversName;
