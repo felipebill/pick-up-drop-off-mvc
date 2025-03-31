@@ -90,6 +90,18 @@ public class ExceptionHandlerAdvice {
     }
 
     // 500 - Erros genéricos não tratados
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiError> handleIllegalArgumentException(IllegalArgumentException ex) {
+    	String message = String.format(ex.getLocalizedMessage());
+    	
+    	return buildResponse(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            message,
+            ex
+        );
+    }
+    
+    // 500 - Erros genéricos não tratados
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGenericErrors(Exception ex) {
         return buildResponse(
