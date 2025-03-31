@@ -3,6 +3,8 @@ package dev.felipebill.pudo.controller;
 import java.net.URI;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import dev.felipebill.pudo.controller.form.NewVehicleForm;
+import dev.felipebill.pudo.model.Vehicle;
 import dev.felipebill.pudo.service.VehicleService;
 
 @RestController
@@ -32,5 +35,13 @@ public class VehicleController {
 		URI uri = uriComponentsBuilder.path("/vehicles/{id}").buildAndExpand(data.id()).toUri();
 		return ResponseEntity.created(uri).body(data);
 	}
+	
+	@GetMapping("/{id}")
+	ResponseEntity<VehicleData> findById(@PathVariable Long id){
+		Vehicle vehicle = this.vehicleService.findById(id);
+		var data = VehicleData.fromVehicle(vehicle);
+		return ResponseEntity.ok(data);
+	}
+	
 
 }
