@@ -3,6 +3,7 @@ package dev.felipebill.pudo.model;
 import java.util.Collection;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,9 +29,9 @@ public class Vehicle {
 	@Column(name = "ID_VEHICLE")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "DS_PLATE")
-	private String plateNumber;
+
+	@Embedded
+	private Plate plateNumber;
 	
 	@Column(name = "DS_DRIVERS_NAME")
 	private String driversName;
