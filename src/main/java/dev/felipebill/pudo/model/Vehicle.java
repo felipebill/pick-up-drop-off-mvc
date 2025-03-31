@@ -3,6 +3,8 @@ package dev.felipebill.pudo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -44,6 +46,7 @@ public class Vehicle {
 	private Integer capacity;
 	
 	@OneToMany(fetch = FetchType.LAZY ,mappedBy = "vehicle" )
+	@JsonIgnore
 	private List<Delivery> deliveries = new ArrayList<>();
 
 	public void assignDelivery(Delivery delivery) {
