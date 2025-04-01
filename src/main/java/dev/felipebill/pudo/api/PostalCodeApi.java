@@ -1,4 +1,4 @@
-package dev.felipebill.pudo.controller;
+package dev.felipebill.pudo.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +11,11 @@ import dev.felipebill.pudo.service.PostalCodeWSClient;
 
 @RestController
 @RequestMapping("/postalCodes")
-public class PostalCodeController {
+public class PostalCodeApi {
 
 	private final PostalCodeWSClient postalCodeWSClient;
 
-	PostalCodeController(PostalCodeWSClient postalCodeWSClient) {
+	PostalCodeApi(PostalCodeWSClient postalCodeWSClient) {
 		this.postalCodeWSClient = postalCodeWSClient;
 	}
 

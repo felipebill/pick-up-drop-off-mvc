@@ -1,4 +1,4 @@
-package dev.felipebill.pudo.controller;
+package dev.felipebill.pudo.controller.data;
 
 import dev.felipebill.pudo.model.Vehicle;
 

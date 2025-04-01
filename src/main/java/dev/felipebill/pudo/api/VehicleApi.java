@@ -1,4 +1,4 @@
-package dev.felipebill.pudo.controller;
+package dev.felipebill.pudo.api;
 
 import java.net.URI;
 import java.util.Optional;
@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import dev.felipebill.pudo.controller.data.VehicleData;
 import dev.felipebill.pudo.controller.form.NewVehicleForm;
 import dev.felipebill.pudo.model.Vehicle;
 import dev.felipebill.pudo.service.VehicleService;
 
 @RestController
 @RequestMapping("/vehicles")
-public class VehicleController {
+public class VehicleApi {
 
 	final VehicleService vehicleService;
 
-	public VehicleController(final VehicleService vehicleService) {
+	public VehicleApi(final VehicleService vehicleService) {
 		this.vehicleService = vehicleService;
 	}
 

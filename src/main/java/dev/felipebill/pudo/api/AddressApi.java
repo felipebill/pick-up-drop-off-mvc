@@ -1,4 +1,4 @@
-package dev.felipebill.pudo.controller;
+package dev.felipebill.pudo.api;
 
 import java.net.URI;
 import java.util.Optional;
@@ -19,11 +19,11 @@ import dev.felipebill.pudo.repository.AddressRepository;
 
 @RestController
 @RequestMapping("/addresses")
-public class AddressController {
+public class AddressApi {
 
 	private final AddressRepository addressRepository;
 
-	public AddressController(final AddressRepository addressRepository) {
+	public AddressApi(final AddressRepository addressRepository) {
 		this.addressRepository = addressRepository;
 	}
 

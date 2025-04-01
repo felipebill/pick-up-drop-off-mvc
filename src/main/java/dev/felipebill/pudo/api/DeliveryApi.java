@@ -1,4 +1,4 @@
-package dev.felipebill.pudo.controller;
+package dev.felipebill.pudo.api;
 
 import java.net.URI;
 import java.util.Optional;
@@ -27,7 +27,7 @@ import dev.felipebill.pudo.service.DeliveryService;
 
 @RestController
 @RequestMapping("/deliveries")
-public class DeliveryController {
+public class DeliveryApi {
 
 	DeliveryFactory deliveryFactory;
 
@@ -35,7 +35,7 @@ public class DeliveryController {
 
 	DeliveryDispatcherService deliveryDispatcherService;
 
-	public DeliveryController(DeliveryFactory deliveryFactory, DeliveryService deliveryService,
+	public DeliveryApi(DeliveryFactory deliveryFactory, DeliveryService deliveryService,
 			DeliveryDispatcherService deliveryDispatcherService) {
 		this.deliveryFactory = deliveryFactory;
 		this.deliveryService = deliveryService;
