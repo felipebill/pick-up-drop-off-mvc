@@ -29,6 +29,7 @@ public class Address {
 	@Column(name = "ID_ADDRESS")
 	private Long id;
 	
+	
 	@Column(name = "DS_STREET")
 	private String street;
 	@Column(name = "NR_NUMBER")

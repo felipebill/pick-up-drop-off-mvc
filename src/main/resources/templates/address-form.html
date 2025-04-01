@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Address Registration Form</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="/path/to/custom.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container mt-5">
+		<h2 class="mb-4">Register Address</h2>
+		<form th:action="@{/address/save}" method="post">
+			<!-- Street -->
+			<div class="mb-3">
+				<label for="street" class="form-label">Street</label> <input
+					type="text" class="form-control" id="street" name="street"
+					placeholder="Enter street name" required>
+			</div>
+
+			<!-- Number -->
+			<div class="mb-3">
+				<label for="number" class="form-label">Number</label> <input
+					type="number" class="form-control" id="number" name="number"
+					placeholder="Enter house/building number" required>
+			</div>
+
+			<!-- Neighborhood -->
+			<div class="mb-3">
+				<label for="neighborhood" class="form-label">Neighborhood</label> <input
+					type="text" class="form-control" id="neighborhood"
+					name="neighborhood" placeholder="Enter neighborhood name" required>
+			</div>
+
+			<!-- Postal Code -->
+			<div class="mb-3">
+				<label for="postalCode" class="form-label">Postal Code</label> <input
+					type="text" class="form-control" id="postalCode"
+					name="postalCode.code" placeholder="Enter postal code" required>
+			</div>
+
+			<!-- State -->
+			<div class="mb-3">
+				<label for="state" class="form-label">State</label> <select
+					id="state" name="state" class="form-select">
+					<option value="" disabled selected>Choose...</option>
+					<option th:each="state : ${states}" th:value="${state}"
+						th:text="|${state.acronym} - ${state.name()}|">
+					</option>
+
+				</select>
+			</div>
+
+			<!-- Country -->
+			<div class="mb-3">
+				<label for="country" class="form-label">Country</label> <select
+					id="country" name="country" class="form-select">
+					<option value="" disabled selected>Choose...</option>
+					<option th:each="country : ${countries}" th:value="${country}"
+						th:text="|${country.acronym} - ${country.name()}|">
+					</option>
+					
+				</select>
+			</div>
+
+			<!-- Submit Button -->
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-QFh6oaY1mNw6eWn+Zp3z5kP9jv7n9jQJcph6xjXUSYyQmI5v9RtL+ELrG5hg1x8a"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+		integrity="sha384-QFh6oaY1mNw6eWn+Zp3z5kP9jv7n9jQJcph6xjXUSYyQmI5v9RtL+ELrG5hg1x8a"
+		crossorigin="anonymous"></script>
+</body>
+</html>
